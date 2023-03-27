@@ -46,3 +46,43 @@ sudo nano dbt_project.yml
 sudo cat > ~/.dbt/profiles.yml
 ```
 12. Edit newly created file and set relevant configuration
+```
+sudo nano ~/.dbt/profiles.yml
+```
+Paste the following, modifying as necessary:
+```
+company-name:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: [hostname]
+      user: [username]
+      password: [password]
+      port: [port]
+      dbname: [database name] # or database instead of dbname
+      schema: [dbt schema]
+      threads: [optional, 1 or more]
+      [keepalives_idle](#keepalives_idle): 0 # default 0, indicating the system default. See below
+      connect_timeout: 10 # default 10 seconds
+      [retries](#retries): 1  # default 1 retry on error/timeout when opening connections
+      [search_path](#search_path): [optional, override the default postgres search_path]
+      [role](#role): [optional, set the role dbt assumes when executing queries]
+      [sslmode](#sslmode): [optional, set the sslmode used to connect to the database]
+    prod:
+      type: postgres
+      host: [hostname]
+      user: [username]
+      password: [password]
+      port: [port]
+      dbname: [database name] # or database instead of dbname
+      schema: [dbt schema]
+      threads: [optional, 1 or more]
+      [keepalives_idle](#keepalives_idle): 0 # default 0, indicating the system default. See below
+      connect_timeout: 10 # default 10 seconds
+      [retries](#retries): 1  # default 1 retry on error/timeout when opening connections
+      [search_path](#search_path): [optional, override the default postgres search_path]
+      [role](#role): [optional, set the role dbt assumes when executing queries]
+      [sslmode](#sslmode): [optional, set the sslmode used to connect to the database]
+
+```
